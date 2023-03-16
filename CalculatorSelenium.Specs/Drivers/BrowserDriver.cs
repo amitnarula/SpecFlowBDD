@@ -2,6 +2,8 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
+using WebDriverManager;
+using WebDriverManager.DriverConfigs.Impl;
 
 namespace CalculatorSelenium.Specs.Drivers
 {
@@ -15,7 +17,7 @@ namespace CalculatorSelenium.Specs.Drivers
 
         public BrowserDriver()
         {
-            _currentWebDriverLazy = new Lazy<IWebDriver>(CreateMSEdgeWebDriver());
+            _currentWebDriverLazy = new Lazy<IWebDriver>(CreateChromeWebDriver());
         }
 
         /// <summary>
@@ -29,12 +31,15 @@ namespace CalculatorSelenium.Specs.Drivers
         /// <returns></returns>
         private IWebDriver CreateChromeWebDriver()
         {
+            new DriverManager().SetUpDriver(new ChromeConfig());
+
             //We use the Chrome browser
-            var chromeDriverService = ChromeDriverService.CreateDefaultService();
+            //var chromeDriverService = ChromeDriverService.CreateDefaultService();
 
             var chromeOptions = new ChromeOptions();
 
-            var chromeDriver = new ChromeDriver(chromeDriverService, chromeOptions);
+            //var chromeDriver = new ChromeDriver(chromeDriverService, chromeOptions);
+            var chromeDriver = new ChromeDriver();
 
             return chromeDriver;
         }

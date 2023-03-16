@@ -6,12 +6,12 @@ phases:
       dotnet: 3.1
   pre_build:
     commands:
-      - echo Restoring NuGet packages...
-      - dotnet restore
+      - echo pre-build phase
   build:
     commands:
-      - echo Building the project...
-      - dotnet build --configuration Release
+      - echo build-phase the docker image and run it as container
+      - docker build -t myapp .
+      - docker run -it myapp
   post_build:
     commands:
-      - echo Post build action
+      - echo post-build phase
