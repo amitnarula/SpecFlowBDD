@@ -37,9 +37,10 @@ namespace CalculatorSelenium.Specs.Drivers
             //var chromeDriverService = ChromeDriverService.CreateDefaultService();
 
             var chromeOptions = new ChromeOptions();
+            chromeOptions.AddArgument("--headless");
 
             //var chromeDriver = new ChromeDriver(chromeDriverService, chromeOptions);
-            var chromeDriver = new ChromeDriver();
+            var chromeDriver = new ChromeDriver(chromeOptions);
 
             return chromeDriver;
         }
